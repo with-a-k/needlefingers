@@ -1,7 +1,5 @@
 var Card = require('./card');
 
-pry = require('pryjs');
-
 var Needlefingers = function() {};
 
 Needlefingers.prototype.score = function(cards) {
@@ -9,7 +7,7 @@ Needlefingers.prototype.score = function(cards) {
     return new Card(shortform);
   });
   if (hand.length != 5 || hand.some(function(card) {
-    return !(card.validCard());
+    return (card.invalidCard());
   })) {
     return 'Invalid hand';
   }
