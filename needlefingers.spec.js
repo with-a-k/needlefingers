@@ -59,7 +59,7 @@ describe('Needle Fingers', function() {
 
   it('rejects hands with suits other than h, c, d, s', function() {
     expect(needleFingers.score('5p 5h 5w 5s 5c')).toEqual('Invalid hand');
-    expect(needleFingers.score('10s 10s 10c 10d 10c')).toEqual('Invalid hand');
+    expect(needleFingers.score('10s 10k 10c 10d 10c')).toEqual('Invalid hand');
   });
 
   it('rejects hands with more or less than 5 cards', function() {

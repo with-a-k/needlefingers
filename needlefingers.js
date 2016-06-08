@@ -1,17 +1,23 @@
 var Card = require('./card');
+var Hand = require('./hand');
 
 var Needlefingers = function() {};
 
 Needlefingers.prototype.score = function(cards) {
-  var hand = cards.split(' ').map(function(shortform){
-    return new Card(shortform);
-  });
-  if (hand.length != 5 || hand.some(function(card) {
-    return (card.invalidCard());
-  })) {
+  var hand = new Hand(cards);
+  if (hand.isInvalid()) {
     return 'Invalid hand';
   }
-  return '';
+  if (hand.hasStraight()) {
+    if (hand.hasFlush()) {
+      return `Straight flush (${hand.highCard()})`;
+    }
+    return `Straight (${hand.highCard()})`;
+  }
+  if (hand.hasFlush()) {
+    return `Flush (${hand.highCard()})`;
+  }
+  return `High card (${hand.highCard()})`;
 }
 
 module.exports = Needlefingers;

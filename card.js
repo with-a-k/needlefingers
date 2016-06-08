@@ -1,6 +1,7 @@
 var Card = function(shortform) {
   this.suit = shortform.slice(-1);
   this.value = shortform.slice(0,-1);
+  this.sortingValue = this.numberValue(shortform);
 }
 
 // the official Array.includes implementation
@@ -37,7 +38,21 @@ const validSuits = ['c', 'd', 'h', 's'];
 const validValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 Card.prototype.invalidCard = function() {
-  return (validSuits.includes(this.suit) || validValues.includes(this.value));
+  return !(validSuits.includes(this.suit) && validValues.includes(this.value));
+}
+
+Card.prototype.numberValue = function(textValue) {
+  if (textValue == 'A') {
+    return 1;
+  } else if (textValue == 'J') {
+    return 11;
+  } else if (textValue == 'Q') {
+    return 12;
+  } else if (textValue == 'K') {
+    return 13;
+  } else {
+    return parseInt(textValue);
+  }
 }
 
 module.exports = Card;
