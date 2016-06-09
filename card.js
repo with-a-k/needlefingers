@@ -1,7 +1,8 @@
+var pry = require('pryjs');
+
 var Card = function(shortform) {
   this.suit = shortform.slice(-1);
   this.value = shortform.slice(0,-1);
-  this.sortingValue = this.numberValue(shortform);
 }
 
 // the official Array.includes implementation
@@ -41,17 +42,17 @@ Card.prototype.invalidCard = function() {
   return !(validSuits.includes(this.suit) && validValues.includes(this.value));
 }
 
-Card.prototype.numberValue = function(textValue) {
-  if (textValue == 'A') {
+Card.prototype.numberValue = function() {
+  if (this.value === 'A') {
     return 1;
-  } else if (textValue == 'J') {
+  } else if (this.value === 'J') {
     return 11;
-  } else if (textValue == 'Q') {
+  } else if (this.value === 'Q') {
     return 12;
-  } else if (textValue == 'K') {
+  } else if (this.value === 'K') {
     return 13;
   } else {
-    return parseInt(textValue);
+    return parseInt(this.value);
   }
 }
 

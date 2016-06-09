@@ -16,8 +16,9 @@ Needlefingers.prototype.score = function(cards) {
   }
   if (hand.hasFlush()) {
     return `Flush (${hand.highCard()})`;
+  } else {
+    return `High card (${hand.highCard()})`;
   }
-  return `High card (${hand.highCard()})`;
 }
 
 module.exports = Needlefingers;

@@ -29,7 +29,7 @@ describe('Needle Fingers', function() {
 
   it('can detect flushes', function() {
     expect(needleFingers.score('5h 7h Jh 10h Qh')).toEqual('Flush (Q)');
-    expect(needleFingers.score('5c 7c Jc 10c 9c')).toEqual('Flush (J)');
+    expect(needleFingers.score('5c 7c Jc Ac 9c')).toEqual('Flush (J)');
   });
 
   it('can detect straights', function() {
@@ -45,11 +45,6 @@ describe('Needle Fingers', function() {
   it('can detect four of a kinds', function() {
     expect(needleFingers.score('7d 7c 7h 7s 2s')).toEqual('Four of a kind (7)');
     expect(needleFingers.score('2d 2c 2s 2h As')).toEqual('Four of a kind (2)');
-  });
-
-  it('rejects hands with two of the same card', function() {
-    expect(needleFingers.score('5h 5h 5c 5s 5c')).toEqual('Invalid hand');
-    expect(needleFingers.score('10s 10s 10c 10d 10c')).toEqual('Invalid hand');
   });
 
   it('rejects hands with values other than A, 2-10, J, Q, K', function() {
